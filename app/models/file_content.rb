@@ -1,0 +1,2 @@
+class FileContent < ApplicationRecord
+end
