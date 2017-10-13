@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  filename: MyString
+  password_digest: MyString
+  md5: MyString
+  content_size: 1
+  private: false
+  expiration: 2017-10-13 12:47:06
+
+two:
+  filename: MyString
+  password_digest: MyString
+  md5: MyString
+  content_size: 1
+  private: false
+  expiration: 2017-10-13 12:47:06
