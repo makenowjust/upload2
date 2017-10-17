@@ -1,7 +1,17 @@
-%h1 FilesController#index
 - if flash[:notice].present?
-  %div= flash[:notice]
-%ul
-  - @file_infos.each do |file_info|
-    %li= link_to file_info.name, file_info
-= render partial: "form", locals: {file_info: @file_info}
+  %div.row
+    %div.col.s12
+      %div.card-panel.teal.lighten-2
+        %span.white-text= flash[:notice]
+%div.row
+  %div.col.s12
+    %h3 File List
+  %col.s12
+    %ul.collection
+      - @file_infos.each do |file_info|
+        %li.collection-item= link_to file_info.name, file_info
+%div.row
+  %div.col.s12
+    %h3 Upload a New File
+%div.row
+  = render partial: "form", locals: {file_info: @file_info}

@@ -1,22 +1,31 @@
-= form_for file_info do |f|
+= form_with model: file_info, html: {class: "col s12"}, local: false do |form|
   - if file_info.errors.present?
-    %div
-      %ul
-        - file_info.errors.full_messages.each do |message|
-          %li= message
-  %div
-    = f.label :file, "File"
-    = f.file_field :file
-  %div
-    = f.label :private, "Private Mode"
-    = f.check_box :private
-  %div
-    = f.label :expiration, "Expiration Date"
-    = f.datetime_field :expiration
-  %div
-    = f.label :password, "Password"
-    = f.password_field :password
-  %div
-    = f.label :password_confirmation, "Password (Confirmation)"
-    = f.password_field :password_confirmation
-  = f.submit "Upload"
+    - file_info.errors.full_messages.each do |message|
+      %div.row
+        %div.col.s12
+          %div.card-panel.red.lighten-2
+            %span.white-text= message
+  %div.row
+    %div.file-field.input-field.col.s12
+      %div.btn
+        %span File
+        = form.file_field :file
+      %div.file-path-wrapper
+        = form.text_field :file, name: nil, class: "file-path validate"
+  %div.row
+    %div.input-field.col.s6
+      = form.password_field :password, class: "validate", id: :file_info_password
+      = form.label :password, "Password to Delete"
+    %div.input-field.col.s6
+      = form.password_field :password_confirmation, class: "validate", id: :file_info_password_confirmation
+      = form.label :password_confirmation, "Password (Confirmation)"
+  %div.row
+    %div.input-field.col.s12
+      = form.text_field :expiration, class: "datepicker", id: :file_info_expiration
+      = form.label :expiration, "Expiration Date (Optional)"
+  %div.row
+    %div.col.s3
+      = form.submit "Upload", class: "waves-effect waves-light btn"
+    %div.col.s3
+      = form.check_box :private, id: :file_info_private
+      = form.label :private, "Private Mode"
