@@ -1,17 +1,13 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
-  filename: MyString
-  password_digest: MyString
-  md5: MyString
-  content_size: 1
+hello:
+  name: hello.txt
+  password_digest: <%= BCrypt::Password.create('hello', cost: 5) %>
+  content_size: 13
   private: false
-  expiration: 2017-10-13 12:47:06
+  expiration: null
 
-two:
-  filename: MyString
-  password_digest: MyString
-  md5: MyString
-  content_size: 1
-  private: false
-  expiration: 2017-10-13 12:47:06
+password:
+  name: password.txt
+  password_digest: <%= BCrypt::Password.create('password', cost: 5) %>
+  content_size: 4
+  private: true
+  expiration: null

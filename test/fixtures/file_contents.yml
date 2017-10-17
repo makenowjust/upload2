@@ -1,9 +1,7 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+hello_content:
+  file_info: hello
+  content: Hello, World!
 
-one:
-  file_info: 
-  content: 
-
-two:
-  file_info: 
-  content: 
+password_content:
+  file_info: password
+  content: pass
