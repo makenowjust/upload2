@@ -2,11 +2,7 @@ class FileInfo < ApplicationRecord
   include Hashid::Rails
 
   has_secure_password
-  has_one :file_content
-
-  scope :find_by_hashid!, ->(hashid) {
-    find(decode_id(hashid))
-  }
+  has_one :file_content, dependent: :destroy
 
   scope :public_file_infos, -> {
     where(
@@ -16,8 +12,20 @@ class FileInfo < ApplicationRecord
     ).order(:created_at).reverse_order
   }
 
+  def file=(file)
+    self.name = file.original_filename
+
+    io = file.to_io
+    io.set_encoding(Encoding::ASCII_8BIT, Encoding::ASCII_8BIT)
+    content = io.read
+
+    self.content_size = content.size
+    self.file_content = FileContent.new
+    self.file_content.content = content
+  end
+
   def outdated?
-    return true unless expiration
+    return false unless expiration
     expiration < Time.current
   end
 end

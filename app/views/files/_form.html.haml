@@ -1,0 +1,22 @@
+= form_for file_info do |f|
+  - if file_info.errors.present?
+    %div
+      %ul
+        - file_info.errors.full_messages.each do |message|
+          %li= message
+  %div
+    = f.label :file, "File"
+    = f.file_field :file
+  %div
+    = f.label :private, "Private Mode"
+    = f.check_box :private
+  %div
+    = f.label :expiration, "Expiration Date"
+    = f.datetime_field :expiration
+  %div
+    = f.label :password, "Password"
+    = f.password_field :password
+  %div
+    = f.label :password_confirmation, "Password (Confirmation)"
+    = f.password_field :password_confirmation
+  = f.submit "Upload"

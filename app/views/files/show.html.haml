@@ -1,0 +1,10 @@
+%h1 FilesController#show
+- if flash[:notice].present?
+  %div= flash[:notice]
+- if flash[:alert].present?
+  %div= flash[:alert]
+= link_to "Download", download_path(@file_info)
+= form_for @file_info, method: :delete do |f|
+  = f.label :password, "Password"
+  = password_field_tag :password
+  = f.submit "Delete"

@@ -1,0 +1,7 @@
+%h1 FilesController#index
+- if flash[:notice].present?
+  %div= flash[:notice]
+%ul
+  - @file_infos.each do |file_info|
+    %li= link_to file_info.name, file_info
+= render partial: "form", locals: {file_info: @file_info}
