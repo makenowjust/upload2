@@ -11,3 +11,17 @@ password:
   content_size: 4
   private: true
   expiration: null
+
+expiration_old:
+  name: old.txt
+  password_digest: <%= BCrypt::Password.create('expiration_old', cost: 5) %>
+  content_size: 3
+  private: false
+  expiration: <%= 1.day.ago.to_s(:db) %>
+
+expiration_new:
+  name: new.txt
+  password_digest: <%= BCrypt::Password.create('expiration_new', cost: 5) %>
+  content_size: 3
+  private: false
+  expiration: <%= 1.day.since.to_s(:db) %>

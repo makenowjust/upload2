@@ -22,6 +22,18 @@ class FileInfoTest < ActiveSupport::TestCase
 
   test "get associated FileContent" do
     hello = file_infos(:hello)
-    assert file_contents(:hello_content), hello.file_content
+    assert_equal file_contents(:hello_content), hello.file_content
+  end
+
+  test "get public FileInfo list except outdated" do
+    file_infos = FileInfo.public_file_infos
+    assert_equal [file_infos(:expiration_new), file_infos(:hello)], file_infos
+  end
+
+  test "check outdated" do
+    old = file_infos(:expiration_old)
+    assert old.outdated?
+    new = file_infos(:expiration_new)
+    assert !new.outdated?
   end
 end

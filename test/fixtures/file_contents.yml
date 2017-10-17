@@ -5,3 +5,11 @@ hello_content:
 password_content:
   file_info: password
   content: pass
+
+expiration_old_content:
+  file_info: expiration_old
+  content: old
+
+expiration_new_content:
+  file_info: expiration_new
+  content: new

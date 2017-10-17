@@ -9,6 +9,15 @@ class FileInfo < ApplicationRecord
   }
 
   scope :public_file_infos, -> {
-    where(private: false)
+    where(
+      "private = :private AND (expiration IS NULL OR expiration >= :expiration)",
+      private: false,
+      expiration: Time.current
+    ).order(:created_at).reverse_order
   }
+
+  def outdated?
+    return true unless expiration
+    expiration < Time.current
+  end
 end
