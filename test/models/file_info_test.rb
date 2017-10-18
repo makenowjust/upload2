@@ -36,4 +36,16 @@ class FileInfoTest < ActiveSupport::TestCase
     new = file_infos(:expiration_new)
     assert !new.outdated?
   end
+
+  test "fill name, content_size and file_content via file" do
+    file = fixture_file_upload("files/hello.txt", "text/plain")
+    content = "Hello, World!\n"
+
+    file_info = FileInfo.new
+    file_info.file = file
+
+    assert_equal "hello.txt", file_info.name
+    assert_equal content.size, file_info.content_size
+    assert_equal content, file_info.file_content.content
+  end
 end
