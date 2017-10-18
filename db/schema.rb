@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171013034956) do
+ActiveRecord::Schema.define(version: 20171018013000) do
 
   create_table "file_contents", force: :cascade do |t|
     t.integer "file_info_id", null: false
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 20171013034956) do
     t.datetime "expiration"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["created_at", "private", "expiration"], name: "index_file_infos_on_created_at_and_private_and_expiration"
   end
 
 end
