@@ -1,5 +1,5 @@
 class FilesController < ApplicationController
-  before_action :set_file_info, only: %i(show destroy)
+  include FileInfoConcern
 
   def index
     @file_infos = FileInfo.public_file_infos
@@ -38,12 +38,5 @@ class FilesController < ApplicationController
       :password,
       :password_confirmation
     )
-  end
-
-  private def set_file_info
-    @file_info = FileInfo.find_by_hashid!(params[:id])
-    if @file_info.outdated?
-      raise ActionController::RoutingError.new("#{params[:id]} is outdated")
-    end
   end
 end
