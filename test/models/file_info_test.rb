@@ -48,4 +48,23 @@ class FileInfoTest < ActiveSupport::TestCase
     assert_equal content.size, file_info.content_size
     assert_equal content, file_info.file_content.content
   end
+
+  test "validate file" do
+    file_info = FileInfo.new
+    file_info.name = ""
+    file_info.validate
+    assert_equal ["can't be empty"], file_info.errors[:file]
+
+    file_info = FileInfo.new
+    file_info.name = "hello"
+    file_info.content_size = nil
+    file_info.validate
+    assert_equal ["can't be empty"], file_info.errors[:file]
+
+    file_info = FileInfo.new
+    file_info.name = "hello"
+    file_info.content_size = 500.kilobytes
+    file_info.validate
+    assert_equal ["is too big"], file_info.errors[:file]
+  end
 end
