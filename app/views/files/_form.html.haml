@@ -8,8 +8,8 @@
   %div.row
     %div.file-field.input-field.col.s12
       %div.btn
-        %span File
-        = form.file_field :file
+        = form.file_field :file, id: :file_info_file
+        = form.label :file, "File"
       %div.file-path-wrapper
         = form.text_field :file, name: nil, class: "file-path validate"
   %div.row
