@@ -1,0 +1,41 @@
+AllCops:
+  TargetRubyVersion: 2.4
+  Exclude:
+  - 'db/**/*'
+  - 'app/views/**/*'
+  - 'bin/*'
+  - 'Rakefile'
+  - 'node_modules/**/*'
+  - 'vendor/**/*'
+  DisplayCopNames: true
+
+Style/AsciiComments:
+  Enabled: false
+
+Style/Lambda:
+  Enabled: false
+
+Metrics/LineLength:
+  Max: 100
+
+Metrics/BlockLength:
+  Enabled: false
+  Include:
+    - 'test/**/*'
+
+Style/Documentation:
+  Enabled: false
+
+Style/GuardClause:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+  Include:
+    - 'test/**/*'
+
+Rails:
+  Enabled: true
+
+Rails/DynamicFindBy:
+  Enabled: false

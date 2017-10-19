@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class FileInfo < ApplicationRecord
   include Hashid::Rails
 
@@ -8,7 +10,7 @@ class FileInfo < ApplicationRecord
 
   scope :public_file_infos, -> {
     where(
-      "private = :private AND (expiration IS NULL OR expiration >= :expiration)",
+      'private = :private AND (expiration IS NULL OR expiration >= :expiration)',
       private: false,
       expiration: Time.current
     ).order(:created_at).reverse_order
@@ -23,7 +25,7 @@ class FileInfo < ApplicationRecord
 
     self.content_size = content.size
     self.file_content = FileContent.new
-    self.file_content.content = content
+    file_content.content = content
   end
 
   def outdated?
@@ -32,13 +34,13 @@ class FileInfo < ApplicationRecord
   end
 
   private def validate_file
-    if self.name.blank? || self.content_size.blank?
+    if name.blank? || content_size.blank?
       errors.add(:file, "can't be empty")
       return
     end
 
-    if self.content_size >= 500.kilobytes
-      errors.add(:file, "is too big")
+    if content_size >= 500.kilobytes
+      errors.add(:file, 'is too big')
       return
     end
   end

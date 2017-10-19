@@ -1,14 +1,16 @@
-require "test_helper"
+# frozen_string_literal: true
+
+require 'test_helper'
 
 class DownloadControllerTest < ActionDispatch::IntegrationTest
-  test "show success" do
+  test 'show success' do
     get download_url(file_infos(:hello))
     assert_response :ok
   end
 
-  test "show failure" do
+  test 'show failure' do
     assert_raise ActiveRecord::RecordNotFound do
-      get download_url("404")
+      get download_url('404')
     end
   end
 end
